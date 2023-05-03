@@ -6,6 +6,8 @@ use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class OrderFormType extends AbstractType
 {
@@ -13,12 +15,20 @@ class OrderFormType extends AbstractType
     {
         $builder
             ->add('amount')
-            ->add('currency', CurrencyType)
-            ->add('status')
-            ->add('created_at')
-            ->add('updated_at')
+            ->add('currency', ChoiceType::class,  ['choices'  => [
+                'AED' => 'AED',
+                'AUD' => 'AUD',
+                'BGN' => 'BGN',
+                'CAD' => 'CAD',
+                'CHF' => 'CHF',
+                'CHF' => 'CHF',
+                'DKK' => 'DKK',
+                'EUR' => 'EUR',
+                'GBP' => 'GBP',
+                'ZAR' => 'ZAR',
+            ]])
             ->add('email')
-            ->add('user')
+            ->add('submit', SubmitType::class)
         ;
     }
 

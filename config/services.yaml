@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.mail: '%env(APP_MAIL)%'
+    app.mail_name: '%env(APP_MAIL_NAME)%'
 
 services:
     # default configuration for services in *this* file
@@ -19,6 +21,15 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    #Symfony\Contracts\HttpClient\HttpClient: ~;
+    #Symfony\Contracts\HttpClient\HttpClientInterface: '@Symfony\Contracts\HttpClient\HttpClient'
+
+    App\Services\RevoultApiWrapper:
+        class: App\Services\RevoultApiWrapper
+        arguments:
+            $endPoint: '%env(REVOUT_ENDPOINT)%'
+            $secretApiKey: '%env(REVOUT_SK)%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

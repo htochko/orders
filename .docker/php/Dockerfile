@@ -17,4 +17,3 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql &&  \
     apt-get update && apt-get install -y nodejs yarn && \
     curl -sS https://getcomposer.org/installer -o composer-setup.php && php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-#RUN docker-php-ext-configure mysql -with-mysql=/usr/local/mysql
